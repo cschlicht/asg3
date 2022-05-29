@@ -226,11 +226,115 @@
     \item Choice of Optimization method = adam
     \item Learning rate = $10^{-3}$
     \item Training Batch Size = 32
-    \item Number of Training Epochs = 20\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    \item Number of Training Epochs = 20\\\\\\\\\\\\\\\\\\\\\\
     
 \end{itemize}
 
 \sol {
+\begin{center}
+  \textbf{\\TRAINING DATA RESULTS}  
+\end{center}
+\begin{center}
+\begin{tabular}{||c c c ||} 
+ \hline
+       & Loss & Accuracy \\ [0.5ex] 
+ \hline\hline
+ Epoch 1  & 0.5194  & 0.7403\\ 
+ \hline
+ Epoch 2 & 0.3449  & 0.8556\\
+ \hline
+ Epoch 3   & 0.1965    & 0.9275\\
+ \hline
+ Epoch 4  & 0.1498   & 0.9477\\
+ \hline
+ Epoch 5  & 0.1189 & 0.9596\\ 
+ \hline
+ Epoch 6 & 0.1014  & 0.9659\\
+ \hline
+ Epoch 7  & 0.0777 & 0.9737 \\
+ \hline
+ Epoch 8  & 0.0648 & 0.9788\\
+ \hline
+ Epoch 9  & 0.0616  & 0.9799 \\ 
+ \hline
+ Epoch 10 & 0.0504 & 0.9835 \\
+ \hline
+ Epoch 11   & 0.0467 & 0.9849  \\
+ \hline
+ Epoch 12  & 0.0385 & 0.9877 \\
+ \hline
+ Epoch 13  & 0.0335  & 0.9905  \\
+ \hline
+ Epoch 14 & 0.0310  & 0.9901\\ 
+ \hline
+ Epoch 15 & 0.0248 & 0.9915\\
+ \hline
+ Epoch 16   & 0.0187   & 0.9938  \\
+ \hline
+ Epoch 17  & 0.0176 & 0.9949\\
+ \hline
+ Epoch 18  & 0.0168 & 0.9945\\
+ \hline
+ Epoch 19  & 0.0276 & 0.9948 \\
+ \hline
+  Epoch 20  & 0.0156 & 0.9951  \\
+ \hline
+
+\end{tabular}
+\end{center}
+
+\begin{center}\\
+  \textbf{\\\\\\\\TEST DATA RESULTS}  
+\end{center}
+\begin{center}
+\begin{tabular}{||c c c ||} 
+ \hline
+       & Loss & Accuracy \\ [0.5ex] 
+ \hline\hline
+ Epoch 1  & 0.5132   & 0.7415\\ 
+ \hline
+ Epoch 2 & 0.3172 & 0.8677\\
+ \hline
+ Epoch 3   & 0.1820     & 0.9335\\
+ \hline
+ Epoch 4  & 0.1386  & 0.9503\\
+ \hline
+ Epoch 5  & 0.1144 & 0.9595\\ 
+ \hline
+ Epoch 6 & 0.0790 & 0.9742\\
+ \hline
+ Epoch 7  & 0.0654  & 0.9775 \\
+ \hline
+ Epoch 8  & 0.0545 & 0.9818\\
+ \hline
+ Epoch 9  & 0.0548  & 0.9825 \\ 
+ \hline
+ Epoch 10 & 0.0410 & 0.9873\\
+ \hline
+ Epoch 11   & 0.0315  & 0.9901  \\
+ \hline
+ Epoch 12  & 0.0322  & 0.9901\\
+ \hline
+ Epoch 13  & 0.0253  & 0.9925  \\
+ \hline
+ Epoch 14 & 0.0208  & 0.9928\\ 
+ \hline
+ Epoch 15 & 0.0217 & 0.9935\\
+ \hline
+ Epoch 16   & 0.0177    & 0.9940\\
+ \hline
+ Epoch 17  & 0.0159  & 0.9950\\
+ \hline
+ Epoch 18  & 0.0163  & 0.9949\\
+ \hline
+ Epoch 19  & 0.0140 & 0.9957 \\
+ \hline
+  Epoch 20  & 0.0101  & 0.9970  \\
+ \hline
+
+\end{tabular}
+\end{center}
+\item LSTM has much better accuracy than SimpleRNN. This can be seen most clearly by comparing Epoch 1 of both. In SimpleRNN, Epoch 1 reports an accuracy of 0.5084, while when using LSTM, Epoch 1 reports an accuracy of 0.7403, a difference of 0.2319
 }
 
 
