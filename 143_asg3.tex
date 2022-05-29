@@ -1,0 +1,239 @@
+%% Thanks to Bennet Goeckner for giving me his TeX template, which this is based on. 
+% SOURCE: https://blogs.gwu.edu/robertwon/2021/07/18/how-to-tex-your-homework/
+%% These percent symbols tell the compiler to ignore the remainder of a given line.
+%% We use them to write comments that will not appear in the finalized output.
+
+%% The following tells the compiler which type of document we're making.
+%% There are many options. ``Article'' is probably fine for our class.
+\documentclass[12pt]{article}
+
+%% After declaring the documentclass, we load some packages which give us 
+%% some built-in commands and more functionality. 
+%% The following is a list of packages that this file might use.
+%% If a command you're using isn't working, try Googling it -- you might need to add a specific package.
+%% I have included the standard ones that I like to load.
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mdframed}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage[margin = .8in]{geometry}
+\geometry{letterpaper}
+\linespread{1.2}
+
+%% One of the nicest things about LaTeX is you can create custom macros. If  there is a long-ish expression that you will write often, it is nice to give it a shorter command.
+%% For our common number systems.
+\newcommand{\RR}{\mathbb{R}} %% The blackboard-bold R that you have seen used for real numbers is typeset by $\mathbb{R}$. This macro means that $\RR$ will yield the same result, and is much shorter to type.
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}} 
+\newcommand{\QQ}{\mathbb{Q}}
+
+%% Your macros can even accept arguments. 
+\newcommand\set[1]{\left\lbrace #1 \right\rbrace} %% In mathmode, if you write \set{STUFF}, then this will output {STUFF}, i.e. STUFF inside of a set
+\newcommand\abs[1]{\left| #1 \right|} %% This will do the same but with vertical bars. I.e., \abs{STUFF} gives |STUFF|
+\newcommand\parens[1]{\left( #1 \right)} %% Similar. \parens{STUFF} gives (STUFF)
+\newcommand\brac[1]{\left[ #1 \right]} %% Similar. \brac{STUFF} gives [STUFF]
+\newcommand\sol[1]{\begin{mdframed}
+\emph{Solution.} #1
+\end{mdframed}}
+\newcommand\solproof[1]{\begin{mdframed}
+\begin{proof} #1
+\end{proof}
+\end{mdframed}}
+%% A few more important commands:
+
+%% You should start every proof with \begin{proof} and end it with \end{proof}.  
+%%
+%% Code inside single dollar signs will give in-line mathmode. I.e., $f(x) = x^2$ 
+%% Code \[ \] will give mathmode centered on its own line.
+%%
+%% Other common commands:
+%%	\begin{align*} and \end{align*} -- Good for multiline equations
+%%	\begin{align} and \end{align} -- Same as above, but it will number the equations for easy reference
+%%	\emph{italicized text here} and \textbf{bold text here} are also useful.
+%%
+%% Some very specific mathmode commands and their meanings:
+%%	x \in A -- x is an element of A
+%%	x \notin A -- x is not an element of A
+%%	A \subseteq B -- A is a subset of B
+%%	A \subsetneq B -- A is a proper subset of B
+%%	x \equiv y \pmod{n} -- x is congruent to y mod n. 
+%%	x \geq y and x \leq y -- Greater than or equal to and less than or equal to 
+%%
+%% You'll probably find lots of relevant commands in the question prompts. Also Google is your friend!
+
+\begin{document}
+\noindent Troy Cook, Cameron Schlicht, Rami Wilson, Angchen Yu\hfill  CSE 143 
+
+\begin{center}
+  {\large Assignment 2:\\
+  Intro to Natural Language Processing}
+\end{center}
+
+
+\begin{enumerate}
+
+
+\section{Programming: Text Classification with RNNs}
+
+
+\subsection{Programming: Text Classification with RNNs }
+
+
+\textbf{Hyperparameters:}\\
+\begin{itemize}
+    \item Choice of nonlinearity = tahn\\
+    \item Word embedding dimension size = 16\\
+    \item Hidden Dimension size = 64\\
+    \item Dropout rate = 0.5 \\
+    \item Choice of Optimization method = adam\\
+    \item Learning rate = $10^{-3}$\\
+    \item Training Batch Size = 32\\
+    \item Number of Training Epochs = 20\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+\end{itemize}
+
+
+
+\sol{
+\begin{center}
+  \textbf{\\TRAINING DATA RESULTS}  
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c c c ||} 
+ \hline
+       & Loss & Accuracy \\ [0.5ex] 
+ \hline\hline
+ Epoch 1  & 0.6691 & 0.5796 \\ 
+ \hline
+ Epoch 2 & 0.5723 & 0.7025 \\
+ \hline
+ Epoch 3   & 0.3721  & 0.8251\\
+ \hline
+ Epoch 4  & 0.2221 & 0.9069\\
+ \hline
+ Epoch 5  & 0.1271 & 0.9519 \\ 
+ \hline
+ Epoch 6 & 0.0783 & 0.9711 \\
+ \hline
+ Epoch 7  & 0.0608  & 0.9793 \\
+ \hline
+ Epoch 8  & 0.0652 & 0.9770  \\
+ \hline
+ Epoch 9  & 0.0712  & 0.9745 \\ 
+ \hline
+ Epoch 10 & 0.0388 & 0.9866   \\
+ \hline
+ Epoch 11   & 0.0360 & 0.9877  \\
+ \hline
+ Epoch 12  & 0.0301 & 0.9896  \\
+ \hline
+ Epoch 13  & 0.0376 & 0.9868  \\
+ \hline
+ Epoch 14 & 0.0345 & 0.9878 \\ 
+ \hline
+ Epoch 15 & 0.0328 & 0.9884  \\
+ \hline
+ Epoch 16   & 0.0251 & 0.9916  \\
+ \hline
+ Epoch 17  & 0.0288 & 0.9908   \\
+ \hline
+ Epoch 18  & 0.0380 & 0.9867 \\
+ \hline
+ Epoch 19  & 0.0408 & 0.9861 \\
+ \hline
+  Epoch 20  & 0.0271 & 0.9911  \\
+ \hline
+
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+  \textbf{\\TEST DATA RESULTS}  
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c c c ||} 
+ \hline
+       & Loss & Accuracy \\ [0.5ex] 
+ \hline\hline
+ Epoch 1  & 0.6987 & 0.5084 \\ 
+ \hline
+ Epoch 2 & 0.5178 & 0.7405\\
+ \hline
+ Epoch 3   & 0.2342   & 0.9047\\
+ \hline
+ Epoch 4  & 0.1398  & 0.9449\\
+ \hline
+ Epoch 5  & 0.1040 & 0.9608\\ 
+ \hline
+ Epoch 6 & 0.0785 & 0.9708\\
+ \hline
+ Epoch 7  & 0.0674   & 0.9753 \\
+ \hline
+ Epoch 8  & 0.0570 & 0.9796\\
+ \hline
+ Epoch 9  & 0.0513  & 0.9812 \\ 
+ \hline
+ Epoch 10 & 0.0484 & 0.9828  \\
+ \hline
+ Epoch 11   & 0.0456  & 0.9837  \\
+ \hline
+ Epoch 12  & 0.0460 & 0.9836\\
+ \hline
+ Epoch 13  & 0.0450  & 0.9844  \\
+ \hline
+ Epoch 14 & 0.0362 & 0.9869\\ 
+ \hline
+ Epoch 15 & 0.0412 & 0.9854  \\
+ \hline
+ Epoch 16   & 0.0396  & 0.9863  \\
+ \hline
+ Epoch 17  & 0.0315  & 0.9896  \\
+ \hline
+ Epoch 18  & 0.0311 & 0.9895\\
+ \hline
+ Epoch 19  & 0.0276 & 0.9914 \\
+ \hline
+  Epoch 20  & 0.0214  & 0.9928  \\
+ \hline
+
+\end{tabular}
+\end{center}
+}
+
+
+
+\end{enumerate}
+
+
+\subsection{Programming: Text Classification with LSTMs}
+
+
+\textbf{Hyperparameters:}
+\begin{itemize}
+    \item Choice of nonlinearity = tahn
+    \item Word embedding dimension size = 16
+    \item Hidden Dimension size = 64
+    \item Dropout rate = 0.5 
+    \item Choice of Optimization method = adam
+    \item Learning rate = $10^{-3}$
+    \item Training Batch Size = 32
+    \item Number of Training Epochs = 20\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+\end{itemize}
+
+\sol {
+}
+
+
+
+
+\end{document}
