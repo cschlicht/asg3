@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\\2.1
+\\While j = 1, 
+\begin{equation*}
+\\v_j(y_j) = max_{{y_{j-1}}} s(x,j,y_{j-1},y_j)
+\end{equation*}
+    \\Assume that for all j, 
+\begin{equation*}
+\\v_j(y_j) = max_{{y_{j-1}}} [s(x,j,y_{j-1},y_j) + v_{j-1}(y_{j-1})]
+\end{equation*}
+\\We want prove that for 
+\begin{equation*}
+{j+1}, \\v_{j+1}(y_{j+1}) = max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + v_{j}(y_{j})]
+\end{equation*}
+\\
+\begin{equation*}
+\\v_{j+1}(y_{j+1}) = max_{{y_1},..,{y_{j}}}\sum_{i=1}^{j+1}s(x,j,y_{j-1},y_j)
+= max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + max_{{y_{j-1}}} [s(x,j,y_{j-1},y_j) + max_{{y_{j-2}}}......)]] = max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + v_{j}(y_{j})]
+\end{equation*}
+\\
+\\2.2
+\begin{equation*}
+\\O(K^2N) 
+\end{equation*}
+\\where K is the number of state, N is the length of the sequence
+
+
+\end{document}
