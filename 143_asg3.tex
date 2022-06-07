@@ -337,6 +337,39 @@
 \item LSTM has much better accuracy than SimpleRNN. This can be seen most clearly by comparing Epoch 1 of both. In SimpleRNN, Epoch 1 reports an accuracy of 0.5084, while when using LSTM, Epoch 1 reports an accuracy of 0.7403, a difference of 0.2319
 }
 
+\section{Theory: Deriving the Viterbi Algorithm}
+
+
+\section{Programming: Implementing the Viterbi algorithm }
+
+\subsection{Coding the Viterbi Algorithm}
+
+\sol{
+\item (Parts 1 & 2)
+
+
+\item Currently, our solution passes the test decoder test.\\ However, it fails on the test and dev sets.
+
+\item Dev Set:
+\item processed 51578 tokens with 5917 phrases; found: 1 phrases; correct: 0.
+\item accuracy:  24.34%; (non-O)
+\item accuracy:   4.06%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+\item LOC: precision:   0.00%; recall:   0.00%; FB1:   0.00  1
+\item MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+\item ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+\item PER: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+
+\item
+
+\item Test Set:
+\item processed 46666 tokens with 5616 phrases; found: 1 phrases; correct: 0.
+\item accuracy:  23.66%; (non-O)
+\item accuracy:   4.11%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+\item LOC: precision:   0.00%; recall:   0.00%; FB1:   0.00  1
+\item MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+\item ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+\item PER: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+}
 
 
 
