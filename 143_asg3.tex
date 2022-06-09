@@ -127,7 +127,7 @@
  Epoch 8  & 0.0652 & 0.9770  \\
  \hline
  Epoch 9  & 0.0712  & 0.9745 \\ 
- \hline
+ \hlinehttps://www.overleaf.com/project/62a16edbea7e0fdd4df0b2f0
  Epoch 10 & 0.0388 & 0.9866   \\
  \hline
  Epoch 11   & 0.0360 & 0.9877  \\
@@ -366,6 +366,7 @@
 \\O(K^2N) 
 \end{equation*}
 \\where K is the number of state, N is the length of the sequence
+\\This is the time complexity because in a observation sequence of length N and with K states, we need to find the the sequence of hidden states with the maximum probability for every n in N and also for every K. Computing maximum for both requires iterating through all states for every N, leaving us with O(K^2N)
 }
 
 \section{Programming: Implementing the Viterbi algorithm }
