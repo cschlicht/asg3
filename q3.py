@@ -22,6 +22,31 @@ from conlleval import evaluate as conllevaluate
 
 directory = '/content/gdrive/My Drive/CSE-143-A3'
 
+def maxTag(tag_arr, table, strTable, row, col, score):
+
+    # Keep track of the max score and current score
+    curr_score = 0
+    max_score = 0
+    # Keeps track of the corresponding tag_arr index of tag
+    tag = 0
+
+    # calculate score and put in table
+    # for every possible tag
+    for t in range(1, len(tag_arr) - 1):
+              
+      # hold on to current score
+      curr_score = table[row-1][t] + score(tag_arr[col], tag_arr[t], row)
+
+      # if current score is now greatest
+      if (curr_score > max_score):
+        # update max score and tag
+        max_score = curr_score
+        tag = t
+
+    table[row][col] = max_score
+    strTable[row][col] = tag
+
+
 def decode(input_length, tagset, score):
     """
     Compute the highest scoring sequence according to the scoring function.
@@ -34,79 +59,63 @@ def decode(input_length, tagset, score):
 
     # MY CODE #
 
-    #print(tagset)
-
-    # Max Score
-    curr_score = 0
-    max_idx = 0
-    max_score = 0
-    tag = 0
-
-    # Create Struct to hold onto values
+    # Create Table for Viterbi algorithm
     cols = len(tagset) + 2 # Cols = TAGS
     rows = input_length    # Rows = WORDS
-    table = [ [ 0 for i in range(cols) ] for j in range(rows) ]
+    table = [ [0 for i in range(cols) ] for j in range(rows) ]
+    strTable = [ [0 for i in range(cols) ] for j in range(rows) ]
 
-    # Initialize tag sequence
-    tag_seq = [None] * input_length
+    # PRINT TABLE (TEST)
+    #print(table)
 
-    # Initialize tag array 
-    tag_arr = [None] * cols
-    tag_arr[0] = "<START>"
-    
-    j=0
+    # Initialize tag sequence (String we return)
+    tag_seq = [None] * rows
 
-    for i in range(1, (cols - 1)):
-        tag_arr[i] = tagset[j]
-        j += 1
+    # Initialize tag array (bank of all possible tags)
+    tag_arr = []
+    # Append <START> token
+    tag_arr.append("<START>")
+    # Append bank of other tokens (excluding <STOP>)
+    for tag in tagset:
+      tag_arr.append(tag)
+    # Append <STOP> token
+    tag_arr.append("<STOP>")
 
-    tag_arr[cols-1] = "<STOP>"
-
+    # PRINT TAG ARRAY (TEST)
     #print(tag_arr)
 
-    
-    # Viterbi algo
+    # Viterbi Algorithm
 
-    # Filling out table by 
-    # checking tag sequence probs on each word
-    for i in range(1, rows): 
+    # Fill out the table by choosing the max score for each cell
 
-      for j in range(1, cols):
-        
-        # if we've reached the final column, but not the final row
-        if (j == cols-1 and i != rows-1):
-          pass
-        
-        # if we've reached the final row, but not the final column
-        elif (i == rows-1 and j != cols-1):
-          pass
+    # Scores for first row remain 0
+    # Scores for first col remain 0
+    # Scores for last row and col remain 0 
+    # EXCEPTION: col_idx == cols-1 AND row_idx == rows-1 (This value will change later)
 
-        # Otherwise
-        else:
-          # Don't need to compare scores if previous word was <START>
-          if ((i-1) == 0):
-            max_score = score(tag_arr[j], tag_arr[0], i)
-            tag = 0
+    # For row in range(1, rows):
+    for row in range(1, rows):
 
-          # Find the maximum score
+      # For col in range(1, cols):
+      for col in range(1, cols):
+
+        # if col == cols AND row == rows:
+        if (col == cols-1 and row == rows-1):
+          # calculate score and put in table
+          maxTag(tag_arr, table, strTable, row, col, score)
+
+        elif (col != cols-1 and row != rows-1):
+
+          # if last word was <START>
+          if (row == 1):
+            # calculate score and put in table
+            table[row][col] = score(tag_arr[col], tag_arr[0], row)
+            strTable[row][col] = 0
+          
+          # Otherwise
           else:
-            # Loop over tags (excluding <START> and <STOP>)
-            # Pick the highest score
-            for y in range(1, (len(tag_arr)-1)):
-              curr_score = score(tag_arr[j], tag_arr[y], i)
-              
-              # if current score is greater than the prev greatest score
-              if (curr_score > max_score):
-                # update max score
-                max_score = curr_score
-                tag = y
-
-          max_score = 0
-
-          # Set cell equal to previous tag
-          table[i][j] = tag
-          #max_score = 0
-          #curr_score = 0
+            # calculate score and put in table
+            maxTag(tag_arr, table, strTable, row, col, score)
 
     # Create tag seq
     i = rows-1
@@ -117,8 +126,8 @@ def decode(input_length, tagset, score):
     idx = idx-1
     while idx > 0:
 
-      tag_seq[idx] = tag_arr[table[i][j]]
-      j = table[i][j]
+      tag_seq[idx] = tag_arr[strTable[i][j]]
+      j = strTable[i][j]
       i = i-1
       idx = idx-1
 
@@ -518,7 +527,7 @@ class FeatureVector(object):
                 self.fdict[txt[0]] = float(txt[1])
 
 #test_decoder()  # Uncomment to test the decoder on a simple example (see https://classes.soe.ucsc.edu/cse143/Winter20/assignments/A3_Debug_Example.pdf)
-main_predict('ner.test', 'model.simple')  # Uncomment to predict on 'dev.ner' using the model 'model.simple' (need to implement 'decode' function)
+main_predict('ner.dev', 'model.simple')  # Uncomment to predict on 'dev.ner' using the model 'model.simple' (need to implement 'decode' function)
 #main_train()    # Uncomment to train a model (need to implement 'sgd' function)
 
 """To sort the model weights for easy viewing, you can use Unix commands:"""

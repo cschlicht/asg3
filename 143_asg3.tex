@@ -339,37 +339,64 @@
 
 \section{Theory: Deriving the Viterbi Algorithm}
 
+\subsection{}
+
+\sol{
+
+\\While j = 1, 
+\begin{equation*}
+\\v_j(y_j) = max_{{y_{j-1}}} s(x,j,y_{j-1},y_j)
+\end{equation*}
+    \\Assume that for all j, 
+\begin{equation*}
+\\v_j(y_j) = max_{{y_{j-1}}} [s(x,j,y_{j-1},y_j) + v_{j-1}(y_{j-1})]
+\end{equation*}
+\\We want prove that for 
+\begin{equation*}
+{j+1}, \\v_{j+1}(y_{j+1}) = max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + v_{j}(y_{j})]
+\end{equation*}
+\\
+\begin{equation*}
+\\v_{j+1}(y_{j+1}) = max_{{y_1},..,{y_{j}}}\sum_{i=1}^{j+1}s(x,j,y_{j-1},y_j)
+= max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + max_{{y_{j-1}}} [s(x,j,y_{j-1},y_j) + max_{{y_{j-2}}}......)]] = max_{{y_{j}}} [s(x,j,y_{j},y_{j+1}) + v_{j}(y_{j})]
+\end{equation*}
+\\
+\\2.2
+\begin{equation*}
+\\O(K^2N) 
+\end{equation*}
+\\where K is the number of state, N is the length of the sequence
+}
 
 \section{Programming: Implementing the Viterbi algorithm }
-
 \subsection{Coding the Viterbi Algorithm}
 
 \sol{
-\item (Parts 1 & 2)
-
-
-\item Currently, our solution passes the test decoder test.\\ However, it fails on the test and dev sets.
+\item (Parts 1 \& 2)
 
 \item Dev Set:
-\item processed 51578 tokens with 5917 phrases; found: 1 phrases; correct: 0.
-\item accuracy:  24.34%; (non-O)
-\item accuracy:   4.06%; precision:   0.00%; recall:   0.00%; FB1:   0.00
-\item LOC: precision:   0.00%; recall:   0.00%; FB1:   0.00  1
-\item MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-\item ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-\item PER: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
 
-\item
+\item processed 51578 tokens with 5917 phrases; found: 4082 phrases; correct: 2441.
+\item accuracy:  41.38\%; (non-O)
+\item accuracy:  89.61\%; precision:  59.80\%; recall:  41.25\%; FB1:  48.82
+\item LOC: precision:  87.53\%; recall:  58.31\%; FB1:  69.99  1219
+\item MISC: precision:  69.94\%; recall:  63.89\%; FB1:  66.78  835
+\item ORG: precision:  36.04\%; recall:  42.65\%; FB1:  39.07  1587
+\item PER: precision:  49.43\%; recall:  11.90\%; FB1:  19.18  441
+
+\item 
 
 \item Test Set:
-\item processed 46666 tokens with 5616 phrases; found: 1 phrases; correct: 0.
-\item accuracy:  23.66%; (non-O)
-\item accuracy:   4.11%; precision:   0.00%; recall:   0.00%; FB1:   0.00
-\item LOC: precision:   0.00%; recall:   0.00%; FB1:   0.00  1
-\item MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-\item ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-\item PER: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
+\item processed 46666 tokens with 5616 phrases; found: 3943 phrases; correct: 2101.
+\item accuracy:  37.73\%; (non-O)
+\item accuracy:  88.02\%; precision:  53.28\%; recall:  37.41\%; FB1:  43.96
+\item LOC: precision:  86.52\%; recall:  55.88\%; FB1:  67.91  1076
+\item MISC: precision:  54.45\%; recall:  50.64\%; FB1:  52.48  652
+\item ORG: precision:  37.26\%; recall:  44.93\%; FB1:  40.74  1986
+\item PER: precision:  32.75\%; recall:   4.68\%; FB1:   8.19  229
+
 }
+
 
 
 
